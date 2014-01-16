@@ -21,6 +21,14 @@ describe "Static pages" do
       expect(page).not_to have_title('| Home')
       expect(page).not_to have_title('|')
     end
+
+    it "should have layout links" do # extra spec
+      visit root_path
+      expect(page).to have_link("Home", href: "/")
+      expect(page).to have_link("Help", href: "/help")
+      expect(page).to have_link("About", href: "/about")
+      expect(page).to have_link("Contact", href: "/contact")
+    end
   end
 
   describe "Help page" do
