@@ -26,10 +26,23 @@ describe "Static pages" do
     end
 
     it "should have layout links" do # extra spec
-      should have_link("Home", href: "/")
-      should have_link("Help", href: "/help")
-      should have_link("About", href: "/about")
-      should have_link("Contact", href: "/contact")
+      visit root_path
+      click_link "About"
+      expect(page).to have_title('About Us')
+
+      click_link "Help"
+      expect(page).to have_title('Help')
+
+
+      click_link "Contact"
+      expect(page).to have_title('Contact')
+
+      click_link "Home"
+      click_link "Sign up now!"
+      expect(page).to have_title('Sign up')
+
+      click_link "sample app"
+      expect(page).to have_title('Ruby on Rails Tutorial Sample App')
     end
   end
 
