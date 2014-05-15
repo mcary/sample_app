@@ -65,4 +65,19 @@ describe User do
 
     it { should_not be_valid }
   end
+
+  describe "when email address is double submitted" do
+    it "should raise error" do
+      pending "This doesn't actually fail without a uniqueness index"
+      user_with_same_email = @user.dup
+      user_with_same_email.email = @user.email.upcase
+
+      user_with_same_email.valid?
+      @user.valid?
+
+      user_with_same_email.save
+      expect(@user.save).to be_false
+      p @user.errors
+    end
+  end
 end
